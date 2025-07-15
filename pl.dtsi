@@ -1,0 +1,63 @@
+/ {
+	amba_pl: amba_pl {
+		ranges;
+		compatible = "simple-bus";
+		#address-cells = <2>;
+		#size-cells = <2>;
+		firmware-name = "ccsdsd123b2_kv260_100_125_167.bit.bin";
+		clocking2: clocking2 {
+			compatible = "xlnx,fclk";
+			status = "okay";
+			assigned-clocks = <&zynqmp_clk 73>;
+			assigned-clock-rates = <166664993>;
+			#clock-cells = <0>;
+			clock-output-names = "fabric_clk";
+			clocks = <&zynqmp_clk 73>;
+		};
+		clocking1: clocking1 {
+			compatible = "xlnx,fclk";
+			status = "okay";
+			assigned-clocks = <&zynqmp_clk 72>;
+			assigned-clock-rates = <124998749>;
+			#clock-cells = <0>;
+			clock-output-names = "fabric_clk";
+			clocks = <&zynqmp_clk 72>;
+		};
+		clocking0: clocking0 {
+			compatible = "xlnx,fclk";
+			status = "okay";
+			assigned-clocks = <&zynqmp_clk 71>;
+			assigned-clock-rates = <99999001>;
+			#clock-cells = <0>;
+			clock-output-names = "fabric_clk";
+			clocks = <&zynqmp_clk 71>;
+		};
+		afi0: afi0 {
+			status = "okay";
+			compatible = "xlnx,afi-fpga";
+			resets = <&zynqmp_reset 116>, <&zynqmp_reset 117>, <&zynqmp_reset 118>, <&zynqmp_reset 119>;
+			config-afi = < 0 0>, <1 0>, <2 0>, <3 0>, <4 0>, <5 0>, <6 0>, <7 0>, <8 0>, <9 0>, <10 0>, <11 0>, <12 0>, <13 0>, <14 0xa00>, <15 0x000>;
+		};
+		ccsds123b2_0: ccsds123b2@a0000000 {
+			compatible = "xlnx,ccsds123b2-1.0.21";
+			xlnx,const-max-lines = <4096>;
+			xlnx,const-max-data-width = <32>;
+			xlnx,ip-name = "ccsds123b2";
+			xlnx,const-max-bands = <256>;
+			xlnx,const-max-p = <3>;
+			reg = <0x0 0xa0000000 0x0 0x10000>;
+			clocks = <&zynqmp_clk 71>, <&zynqmp_clk 73>, <&zynqmp_clk 72>;
+			xlnx,ddr3-axi-addr-width = <32>;
+			xlnx,controller-addr-width = <32>;
+			xlnx,edk-iptype = "PERIPHERAL";
+			xlnx,const-max-samples = <640>;
+			xlnx,ddr3-axi-data-bytes-log = <2>;
+			xlnx,controller-data-bytes-log = <2>;
+			status = "okay";
+			xlnx,const-min-omega = <4>;
+			clock-names = "c_s_axi_clk" , "ccsds_clk" , "d_m_axi_clk";
+			xlnx,const-max-omega = <19>;
+			xlnx,name = "ccsds123b2_0";
+		};
+	};
+};
