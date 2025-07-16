@@ -27,15 +27,3 @@ default all: $(BIN) $(DTBO)
 
 %.dtbo
 	dtc -I dts -O dtb -o $@ $(DTSI)
-
-install: all
-	mkdir -p $(INSTALL_DIR)
-	install -D -m 644 $(DTBO) $(INSTALL_DIR)
-	install -D -m 644 $(BIN) $(INSTALL_DIR)
-	install -D -m 644 $(JSON) $(INSTALL_DIR)
-
-uninstall:
-	rm -rf $(INSTALL_DIR)
-
-clean distclean:
-	rm -f *.bit *.bin *.dtbo *.bif
