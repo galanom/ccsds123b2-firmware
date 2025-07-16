@@ -8,7 +8,7 @@ Each platform the design is ported to will be assigned a seperate branch.
 | Platform	| Kria kv260	|
 | IP revision	| 1.0.21	|
 | AXI-Lite clk	| 100 MHz	|
-| DDR clk	| 150 MHz	|
+| DDR clk	| 125 MHz	|
 | Core clk	| 167 MHz	|
 
 Added features:
