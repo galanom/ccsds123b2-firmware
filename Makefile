@@ -1,6 +1,6 @@
 .PHONY: default all clean distclean install uninstall
 
-BITC := $(basename $(notdir $(wildcard *.bit.xz)))
+BITC := $(notdir $(wildcard *.bit.xz))
 ifeq ($(words $(BITC)),0)
 	$(error No bit file was found.)
 endif
@@ -8,11 +8,11 @@ ifneq ($(words $(BITC)),1)
 	$(error Multiple bit files were found.)
 endif
 
-BIT := $(subst .xz,,$(BITC))
+BIT := $(basename $(BITC))
 DTSI := pl.dtsi
 DTBO := $(subst .bit,.dtbo,$(BIT))
 BIN := $(BIT).bin
-JSON = shell.json
+JSON := shell.json
 
 INSTALL_DIR=$(DESTDIR)/lib/firmware/xilinx/ccsds123b2/
 
