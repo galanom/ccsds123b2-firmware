@@ -1,10 +1,10 @@
 .PHONY: default all clean distclean install uninstall
 
 BITC := $(basename $(notdir $(wildcard *.bit.xz)))
-ifeq ($(words $(BITC),0)
+ifeq ($(words $(BITC)),0)
 	$(error No bit file was found.)
 endif
-ifneq ($(words $(BITC),1)
+ifneq ($(words $(BITC)),1)
 	$(error Multiple bit files were found.)
 endif
 
