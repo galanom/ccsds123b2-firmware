@@ -4,7 +4,7 @@
 		compatible = "simple-bus";
 		#address-cells = <2>;
 		#size-cells = <2>;
-		firmware-name = "ccsdsd123b2_kv260_100_125_167.bit.bin";
+		firmware-name = "ccsds123b2_kv260_100_125_167.bit.bin";
 		clocking2: clocking2 {
 			compatible = "xlnx,fclk";
 			status = "okay";
