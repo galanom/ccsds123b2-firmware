@@ -25,5 +25,5 @@ default all: $(BIN) $(DTBO)
 	echo -e "all:\n{\n\t[destination_device = pl] $(BIT)\n}" > $(BIT).bif
 	bootgen -image $(BIT).bif -arch zynqmp -o $@ -w
 
-%.dtbo
+%.dtbo:
 	dtc -I dts -O dtb -o $@ $(DTSI)
