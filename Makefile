@@ -18,12 +18,12 @@ INSTALL_DIR=$(DESTDIR)/lib/firmware/xilinx/ccsds123b2/
 
 default all: $(BIN) $(DTBO)
 
-%.bit:
-	xz -d $@
+$(BIT):
+	xz -d $(BITC)
 
-%.bit.bin: $(BIT)
+$(BIN): $(BIT)
 	echo -e "all:\n{\n\t[destination_device = pl] $(BIT)\n}" > $(BIT).bif
 	bootgen -image $(BIT).bif -arch zynqmp -o $@ -w
 
-%.dtbo:
-	dtc -I dts -O dtb -o $@ $(DTSI)
+$(DTBO):
+	dtc -I dts -O dtb -o $(DTBO) $(DTSI)
