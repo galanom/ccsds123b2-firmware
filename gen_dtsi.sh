@@ -6,7 +6,7 @@ DTSI_OUT="${FW_NAME%%.*}.dtsi"
 
 nodes=""
 for node in "clocking" "afi" "ccsds123b2_"; do
-	nodes="${nodes}$(sed -n "/${node}[0-9]*:/ { :a; N; /};/!ba; p }" "${DTSI_IN}")"$'\n'
+	nodes="${nodes}$(sed -n "/${node}[0-9]*:/ { :a; N; /};/!ba; p }" "${DTSI_IN}" | sed $'s/^/\t/')"$'\n'
 done
 
 cat <<EOF > ${DTSI_OUT}
@@ -17,13 +17,15 @@ cat <<EOF > ${DTSI_OUT}
 	fragment@0 {
 		target = <&fpga_full>;
 		overlay0: __overlay__ {
-			firmware-name = \"${FW}\";
+			firmware-name = "${FW_NAME}";
 		};
 	};
 
 	fragment@1 {
-		target = <&
+		target = <&axi>;
+		overlay1: __overlay__ {
 ${nodes}
+		};
 	};
 };
 EOF
