@@ -26,7 +26,7 @@ $(BIN): $(BIT)
 	bootgen -image $(BIT).bif -arch zynqmp -o $@ -w
 
 $(DTBO):
-	./gen_dtsi.sh
+	./gen_dtsi
 	dtc -@ -I dts -O dtb -o $(DTBO) $(subst .dtbo,.dtsi,$(DTBO))
 
 clean:
