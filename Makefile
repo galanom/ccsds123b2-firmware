@@ -18,8 +18,8 @@ INSTALL_DIR=$(DESTDIR)/lib/firmware/xilinx/ccsds123b2/
 
 default all: $(BIN) $(DTBO)
 
-$(BIT):
-	xz -d $(BITC)
+$(BIT): $(BITC)
+	xz -kfd $(BITC)
 
 $(BIN): $(BIT)
 	echo -e "all:\n{\n\t[destination_device = pl] $(BIT)\n}" > $(BIT).bif
