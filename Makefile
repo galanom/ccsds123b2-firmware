@@ -22,7 +22,7 @@ $(BIT): $(BITC)
 	xz -kfd $(BITC)
 
 $(BIN): $(BIT)
-	echo -e "all:\n{\n\t[destination_device = pl] $(BIT)\n}" > $(BIT).bif
+	printf "all:\n{\n\t[destination_device = pl] $(BIT)\n}" > $(BIT).bif
 	bootgen -image $(BIT).bif -arch zynqmp -o $@ -w
 
 $(DTBO):
