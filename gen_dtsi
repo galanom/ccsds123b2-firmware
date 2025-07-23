@@ -22,7 +22,7 @@ cat <<EOF > ${DTSI_OUT}
 	};
 
 	fragment@1 {
-		target = <&axi>;
+		target = <&amba>;
 		overlay1: __overlay__ {
 ${nodes}
 		};
