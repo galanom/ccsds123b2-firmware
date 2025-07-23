@@ -4,11 +4,16 @@ DTSI_IN="pl.dtsi"
 FW_NAME=$(grep "firmware-name" ${DTSI_IN} | awk -F'"' '/firmware-name/ { print $2 }')
 DTSI_OUT="${FW_NAME%%.*}.dtsi"
 
+# Parse the Vivado-generated pl.dtsi to an overlay suitable for FPGA Manager
 nodes=""
 for node in "clocking" "afi" "ccsds123b2_"; do
 	nodes="${nodes}$(sed -n "/${node}[0-9]*:/ { :a; N; /};/!ba; p }" "${DTSI_IN}" | sed $'s/^/\t/')"$'\n'
 done
 
+# Remove the version number in ccsds123b2 node
+nodes=$(echo "${nodes}" | sed 's/\(ccsds123b2\)-[0-9.]*"/\1"/')
+
+# Add the device-tree overlay code
 cat <<EOF > ${DTSI_OUT}
 /dts-v1/;
 /plugin/;
