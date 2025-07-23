@@ -27,4 +27,7 @@ $(BIN): $(BIT)
 
 $(DTBO):
 	./gen_dtsi.sh
-	dtc -I dts -O dtb -o $(DTBO) $(subst .dtbo,.dtsi,$(DTBO))
+	dtc -@ -I dts -O dtb -o $(DTBO) $(subst .dtbo,.dtsi,$(DTBO))
+
+clean:
+	rm -f $(BIT) $(BIN) $(DTBO)
