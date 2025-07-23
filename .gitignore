@@ -1,0 +1,5 @@
+*.dtsi
+*.dtbo
+*.bit
+*.bin
+*.bif
